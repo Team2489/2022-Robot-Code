@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveArcade;
+import frc.robot.subsystems.NEODrivetrain;
 
 
 
@@ -16,12 +18,13 @@ import edu.wpi.first.wpilibj.XboxController;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  
+  private final NEODrivetrain driveTrain = new NEODrivetrain();
+  private final XboxController xboxController = new XboxController(Constants.XBOX_CONTROLLER_PORT);
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    driveTrain.setDefaultCommand(new DriveArcade(driveTrain, xboxController::getRightX, xboxController::getRightY));
   }
 
   /**

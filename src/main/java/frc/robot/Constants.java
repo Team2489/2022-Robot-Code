@@ -21,4 +21,5 @@ public final class Constants {
 	public static final double CHASSIS_GEAR_RATIO = 10.75;
 	public static final int SHOOTER_MOTOR_PORT = 0;
 	public static final int HOOD_MOTOR_PORT = 0;
-	public static final int TURRET_MOTOR_PORT = 0;}
+	public static final int TURRET_MOTOR_PORT = 0;
+    public static final int XBOX_CONTROLLER_PORT = 0;}

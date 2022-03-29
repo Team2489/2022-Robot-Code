@@ -29,7 +29,7 @@ public class NEODrivetrain extends SubsystemBase {
     rightBackMax.follow(rightFrontMax);
     leftBackMax.follow(leftFrontMax);
   }
-  public void arcadeDrive(SubsystemBase subsystemBase, double speed, double rotation){
+  public void arcadeDrive(double speed, double rotation){
  
     double kRVoltage = rightFrontMax.getBusVoltage();
     double kLVoltage = leftFrontMax.getBusVoltage();
