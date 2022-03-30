@@ -22,4 +22,8 @@ public final class Constants {
 	public static final int SHOOTER_MOTOR_PORT = 0;
 	public static final int HOOD_MOTOR_PORT = 0;
 	public static final int TURRET_MOTOR_PORT = 0;
-    public static final int XBOX_CONTROLLER_PORT = 0;}
+    public static final int XBOX_CONTROLLER_PORT = 0;
+    public static final int FIRST_INTAKE_MOTOR = 0;
+    public static final int SECONDARY_INTAKE_MOTOR = 0;
+    public static final int RIGHT_CLIMB_MOTOR = 0;
+    public static final int LEFT_CLIMB_MOTOR = 0;}

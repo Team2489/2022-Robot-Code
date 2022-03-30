@@ -26,6 +26,7 @@ public class NEODrivetrain extends SubsystemBase {
     leftFrontMax.enableVoltageCompensation(12);
     leftBackMax.enableVoltageCompensation(12);
 
+
     rightBackMax.follow(rightFrontMax);
     leftBackMax.follow(leftFrontMax);
   }

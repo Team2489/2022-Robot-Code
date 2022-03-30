@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-import java.util.function.DoubleSupplier;
+
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.NEODrivetrain;
@@ -12,9 +12,9 @@ import frc.robot.subsystems.NEODrivetrain;
 public class DriveArcade extends CommandBase {
   /** Creates a new DriveArcade. */
    private final NEODrivetrain driveTrain;
-    private final DoubleSupplier speed;
-    private final DoubleSupplier rotation;
-  public DriveArcade(NEODrivetrain driveTrain, DoubleSupplier speed, DoubleSupplier rotation) {
+    private final double speed;
+    private final double rotation;
+  public DriveArcade(NEODrivetrain driveTrain, double speed, double rotation) {
     
     this.driveTrain = driveTrain;
     this.speed = speed;
@@ -24,7 +24,7 @@ public class DriveArcade extends CommandBase {
   }
   @Override
   public void execute() {
-    driveTrain.arcadeDrive(speed.getAsDouble(), rotation.getAsDouble());
+    driveTrain.arcadeDrive(speed, rotation);
     
   }
 

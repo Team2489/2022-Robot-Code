@@ -24,14 +24,18 @@ public class RobotContainer {
   
   private final NEODrivetrain driveTrain = new NEODrivetrain();
   private final XboxController xboxController = new XboxController(Constants.XBOX_CONTROLLER_PORT);
+ 
 
   private final AutonomousCommand m_autoCommand = new AutonomousCommand();
 
   public RobotContainer() {
     // Configure the button bindings
+    double speed = xboxController.getRawAxis(1);
+    double rotation = xboxController.getRawAxis(3);
     configureButtonBindings();
-    driveTrain.setDefaultCommand(new DriveArcade(driveTrain, xboxController::getRightX, xboxController::getRightY));
+    driveTrain.setDefaultCommand(new DriveArcade(driveTrain, speed, rotation));
   }
+
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
