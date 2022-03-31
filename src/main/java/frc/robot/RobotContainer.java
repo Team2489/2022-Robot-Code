@@ -6,11 +6,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutonomousCommand;
 import frc.robot.commands.DriveArcade;
+import frc.robot.commands.LowerClimb;
+import frc.robot.commands.ManualShoot;
+import frc.robot.commands.RaiseClimb;
+import frc.robot.subsystems.HoodedShooter;
 import frc.robot.subsystems.NEODrivetrain;
+import frc.robot.subsystems.WinchClimber;
 
 
 
@@ -24,6 +30,8 @@ public class RobotContainer {
   
   private final NEODrivetrain driveTrain = new NEODrivetrain();
   private final XboxController xboxController = new XboxController(Constants.XBOX_CONTROLLER_PORT);
+  private final WinchClimber winchClimber = new WinchClimber();
+  private final HoodedShooter hoodedShooter = new HoodedShooter();
  
 
   private final AutonomousCommand m_autoCommand = new AutonomousCommand();
@@ -31,9 +39,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     double speed = xboxController.getRawAxis(1);
-    double rotation = xboxController.getRawAxis(3);
+    double rotation = xboxController.getRawAxis(2);
+    double shooterSpeed = xboxController.getRawAxis(3);
     configureButtonBindings();
     driveTrain.setDefaultCommand(new DriveArcade(driveTrain, speed, rotation));
+    hoodedShooter.setDefaultCommand(new ManualShoot(hoodedShooter, shooterSpeed));
+    
   }
 
 
@@ -44,6 +55,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
+    new JoystickButton(xboxController, Button.kX.value).whenHeld(new RaiseClimb(winchClimber));
+    new JoystickButton(xboxController, Button.kY.value).whenHeld(new LowerClimb(winchClimber));
+    
 
   }
 

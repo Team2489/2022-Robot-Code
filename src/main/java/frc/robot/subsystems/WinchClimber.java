@@ -24,21 +24,17 @@ public class WinchClimber extends SubsystemBase {
     rightClimbMotor.setSafetyEnabled(true);
     leftClimbMotor.setSafetyEnabled(true);
    }
-   public void climb(boolean raise, boolean lower){
+   public void raiseClimb(){
      double kRightClimbMotorVoltage = 12/rightClimbMotor.getBusVoltage();
      double kLeftClimbMotorVoltage = 12/leftClimbMotor.getBusVoltage();
-    if(raise){
-      rightClimbMotor.set(ControlMode.PercentOutput, 0.5*kRightClimbMotorVoltage);
-      leftClimbMotor.set(ControlMode.PercentOutput, 0.5*kLeftClimbMotorVoltage);
-    }
-    else if(lower){
-      rightClimbMotor.set(ControlMode.PercentOutput, -0.5*kRightClimbMotorVoltage);
-      leftClimbMotor.set(ControlMode.PercentOutput, -0.5*kLeftClimbMotorVoltage);
-    }
-    else{
-      rightClimbMotor.set(ControlMode.PercentOutput, 0);
-      leftClimbMotor.set(ControlMode.PercentOutput, 0);
-    }
+     rightClimbMotor.set(ControlMode.PercentOutput, 0.5*kRightClimbMotorVoltage);
+     leftClimbMotor.set(ControlMode.PercentOutput, 0.5*kLeftClimbMotorVoltage);
+   }
+   public void lowerClimb(){
+    double kRightClimbMotorVoltage = 12/rightClimbMotor.getBusVoltage();
+    double kLeftClimbMotorVoltage = 12/leftClimbMotor.getBusVoltage();
+    rightClimbMotor.set(ControlMode.PercentOutput, -0.5*kRightClimbMotorVoltage);
+    leftClimbMotor.set(ControlMode.PercentOutput, -0.5*kLeftClimbMotorVoltage);
    }
   
 
