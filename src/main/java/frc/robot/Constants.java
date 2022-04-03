@@ -19,11 +19,12 @@ public final class Constants {
 	public static final int LEFT_FRONT_MAX = 0;
 	public static final int LEFT_BACK_MAX = 0;
 	public static final double CHASSIS_GEAR_RATIO = 10.75;
-	public static final int SHOOTER_MOTOR_PORT = 0;
+	public static final int SHOOTER_MOTOR_PORT = 1;
 	public static final int HOOD_MOTOR_PORT = 0;
 	public static final int TURRET_MOTOR_PORT = 0;
-    public static final int XBOX_CONTROLLER_PORT = 0;
+    public static final int XBOX_CONTROLLER_PORT = 1;
     public static final int FIRST_INTAKE_MOTOR = 0;
     public static final int SECONDARY_INTAKE_MOTOR = 0;
     public static final int RIGHT_CLIMB_MOTOR = 0;
-    public static final int LEFT_CLIMB_MOTOR = 0;}
+    public static final int LEFT_CLIMB_MOTOR = 0;
+    public static final int INTAKE_FEEDER_MOTOR = 2;}

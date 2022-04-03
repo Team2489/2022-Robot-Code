@@ -19,8 +19,12 @@ public class LowerClimb extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+   
+  }
+  public void execute(){
     winchClimber.lowerClimb();
   }
+
   @Override
   public void end(boolean interrupted) {
     winchClimber.stopClimb();
