@@ -22,6 +22,11 @@ public class LowerClimb extends CommandBase {
     winchClimber.lowerClimb();
   }
   @Override
+  public void end(boolean interrupted) {
+    winchClimber.stopClimb();
+  }
+ 
+  @Override
   public boolean isFinished() {
     return false;
   }

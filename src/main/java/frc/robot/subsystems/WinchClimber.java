@@ -36,6 +36,10 @@ public class WinchClimber extends SubsystemBase {
     rightClimbMotor.set(ControlMode.PercentOutput, -0.5*kRightClimbMotorVoltage);
     leftClimbMotor.set(ControlMode.PercentOutput, -0.5*kLeftClimbMotorVoltage);
    }
+   public void stopClimb(){
+    rightClimbMotor.set(0);
+    leftClimbMotor.set(0);
+   }
   
 
   @Override

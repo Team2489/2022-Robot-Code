@@ -18,11 +18,22 @@ public class RaiseClimb extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    winchClimber.raiseClimb();
+   
   }
+   // Called every time the scheduler runs while the command is scheduled.
+   @Override
+   public void execute() {
+    winchClimber.raiseClimb();
+   }
+   // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    winchClimber.stopClimb();
+  }
+ 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
 
