@@ -14,17 +14,15 @@ package frc.robot;
  */
 public final class Constants {
 
-	public static final int RIGHT_FRONT_MAX = 0;
-	public static final int RIGHT_BACK_MAX = 0;
-	public static final int LEFT_FRONT_MAX = 0;
-	public static final int LEFT_BACK_MAX = 0;
+	public static final int RIGHT_FRONT_MAX = 34;
+	public static final int RIGHT_BACK_MAX = 35;
+	public static final int LEFT_FRONT_MAX = 31;
+	public static final int LEFT_BACK_MAX = 33;
 	public static final double CHASSIS_GEAR_RATIO = 10.75;
-	public static final int SHOOTER_MOTOR_PORT = 1;
-	public static final int HOOD_MOTOR_PORT = 0;
-	public static final int TURRET_MOTOR_PORT = 0;
+	public static final int SHOOTER_MOTOR_PORT = 37;
     public static final int XBOX_CONTROLLER_PORT = 1;
-    public static final int FIRST_INTAKE_MOTOR = 0;
-    public static final int SECONDARY_INTAKE_MOTOR = 0;
-    public static final int RIGHT_CLIMB_MOTOR = 0;
-    public static final int LEFT_CLIMB_MOTOR = 0;
-    public static final int INTAKE_FEEDER_MOTOR = 2;}
+    public static final int FIRST_INTAKE_MOTOR = 40;
+    public static final int SECONDARY_INTAKE_MOTOR = 41;
+    public static final int RIGHT_CLIMB_MOTOR = 44;
+    public static final int LEFT_CLIMB_MOTOR = 42;
+    public static final int INTAKE_FEEDER_MOTOR = 43;}

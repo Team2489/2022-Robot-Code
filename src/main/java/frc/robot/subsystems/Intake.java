@@ -53,7 +53,7 @@ public class Intake extends SubsystemBase {
 
     public void run(double power){
       firstCurrentPower = power;
-      secondCurrentPower = power;
+      secondCurrentPower = -power;
       double kFirstIntakeMotorVoltage = 12/firstIntakeMotor.getBusVoltage();
       double kSecondaryIntakeMotorVoltage = 12/secondaryIntakeMotor.getBusVoltage();
       firstIntakeMotor.set(ControlMode.PercentOutput, firstCurrentPower*kFirstIntakeMotorVoltage);

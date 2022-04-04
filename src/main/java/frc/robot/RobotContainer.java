@@ -60,15 +60,15 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    new JoystickButton(xboxController, Button.kX.value).whenHeld(new RaiseClimb(winchClimber));
-    new JoystickButton(xboxController, Button.kY.value).whenHeld(new LowerClimb(winchClimber));
-    new JoystickButton(xboxController, Button.kLeftBumper.value).whenPressed(new Drive(driveTrain, 0.75, 0).withTimeout(2));
-    new JoystickButton(xboxController, Button.kX.value).whenHeld(new GrabReleaseBalls(intake,-0.3));
-    new JoystickButton(xboxController, Button.kY.value).whenHeld(new GrabReleaseBalls(intake, 0.3));
-    new JoystickButton(xboxController, Button.kLeftBumper.value).whenPressed(new GrabReleaseBalls(intake, -0.3).withTimeout(3));
-    new JoystickButton(xboxController, Button.kRightBumper.value).whenPressed(new GrabReleaseBalls(intake, 0.3).withTimeout(3));
-    new JoystickButton(xboxController, Button.kB.value).whenPressed(new Grab(intake, 0.3));
-    new JoystickButton(xboxController, Button.kA.value).whenPressed(new ManualShoot(hoodedShooter, 0.75, 0.5, 3, 3));
+    // new JoystickButton(xboxController, Button.kX.value).whenHeld(new RaiseClimb(winchClimber));
+    // new JoystickButton(xboxController, Button.kY.value).whenHeld(new LowerClimb(winchClimber));
+    // new JoystickButton(xboxController, Button.kLeftBumper.value).whenPressed(new Drive(driveTrain, 0.75, 0).withTimeout(2));
+    new JoystickButton(xboxController, Button.kX.value).whenHeld(new GrabReleaseBalls(intake,-0.9));
+    new JoystickButton(xboxController, Button.kY.value).whenHeld(new GrabReleaseBalls(intake, 0.9));
+    // new JoystickButton(xboxController, Button.kLeftBumper.value).whenPressed(new GrabReleaseBalls(intake, -0.3).withTimeout(3));
+    // new JoystickButton(xboxController, Button.kRightBumper.value).whenPressed(new GrabReleaseBalls(intake, 0.3).withTimeout(3));
+    // new JoystickButton(xboxController, Button.kB.value).whenPressed(new Grab(intake, 0.3));
+    new JoystickButton(xboxController, Button.kA.value).whenPressed(new ManualShoot(hoodedShooter, 0.6, 0.6, 3, 3));
   }
 
   /**

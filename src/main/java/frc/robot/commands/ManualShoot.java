@@ -27,8 +27,8 @@ public class ManualShoot extends CommandBase {
     this.feederPower = feederPower;
     this.rampUpTime = rampUpTime;
     this.feedTime = feedTime;
-    this.shooterTimer = new Timer();
-    this.feederTimer = new Timer();
+    //this.shooterTimer = new Timer();
+    //this.feederTimer = new Timer();
     this.feedStarted = false;
     addRequirements(hoodedShooter);
     
@@ -38,19 +38,22 @@ public class ManualShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    this.shooterTimer = new Timer();
+    this.feederTimer = new Timer();
     shooterTimer.start();
-    // System.out.println("initlized");
+    System.out.println("initlized");
   }
  
   @Override
   public void execute() {
-    // System.out.println("execute");
+    System.out.println("execute");
     hoodedShooter.shoot(shooterPower);
     if(shooterTimer.hasElapsed(rampUpTime)){
+      System.out.println("here");
       if(feedStarted == false){
         feedStarted = true;
         feederTimer.start();
-        // System.out.println("feed timer started");
+        System.out.println("feed timer started");
       }
       hoodedShooter.feed(feederPower);
     }
@@ -62,14 +65,18 @@ public class ManualShoot extends CommandBase {
   }
   @Override
   public boolean isFinished() {
-    // System.out.println("isFinished");
+    System.out.println("isFinished");
     if(feedStarted == false){
       return false;
     }
     else{
       // System.out.println(feederTimer.get());
       return feederTimer.hasElapsed(feedTime);
-      
+      // if (ret) {
+        // shooterTimer.stop();
+        // feederTimer.stop();
+    //   }
+    //   return ret;
     }
 
   }
