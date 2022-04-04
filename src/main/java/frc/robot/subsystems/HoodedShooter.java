@@ -21,6 +21,8 @@ public class HoodedShooter extends SubsystemBase {
   RelativeEncoder shooterEncoder;
   WPI_TalonSRX feederMotor;
   Timer timer;
+  double shooterMotorPower;
+  double feederMotorPower;
 
   public HoodedShooter() {
 
@@ -29,20 +31,26 @@ public class HoodedShooter extends SubsystemBase {
     shooterMotor = new WPI_TalonSRX(Constants.SHOOTER_MOTOR_PORT);
     feederMotor = new WPI_TalonSRX(Constants.INTAKE_FEEDER_MOTOR);
     timer = new Timer();
+    shooterMotorPower = 0.0;
+    feederMotorPower = 0.0;
+
     // shooterMotor.enableVoltageCompensation(12);
     // shooterEncoder = shooterMotor.getEncoder();
-   
   }
   public void shoot(double power){
+    shooterMotorPower = power;
     double shooterVoltage = shooterMotor.getBusVoltage();
     shooterMotor.setInverted(true);
     shooterMotor.set(power*shooterVoltage);
   }
   public void feed(double power){
+    feederMotorPower = power;
     double feedVoltage = feederMotor.getBusVoltage();
     feederMotor.set(power*feedVoltage);
   }
   public void stopShoot(){
+    shooterMotorPower = 0.0;
+    feederMotorPower = 0.0;
     shooterMotor.set(0);
     feederMotor.set(0);
   }
@@ -51,5 +59,9 @@ public class HoodedShooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    double shooterVoltage = shooterMotor.getBusVoltage();
+    shooterMotor.set(shooterMotorPower*shooterVoltage);
+    double feedVoltage = feederMotor.getBusVoltage();
+    feederMotor.set(feederMotorPower*feedVoltage);
   }
 }
