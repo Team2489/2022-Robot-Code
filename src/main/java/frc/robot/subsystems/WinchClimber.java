@@ -14,6 +14,9 @@ public class WinchClimber extends SubsystemBase {
   
   WPI_TalonSRX rightClimbMotor;
   WPI_TalonSRX leftClimbMotor;
+  double rightMotorPower;
+  double leftMotorPower;
+
   public WinchClimber() {
     rightClimbMotor = new WPI_TalonSRX(Constants.RIGHT_CLIMB_MOTOR);
     leftClimbMotor = new WPI_TalonSRX(Constants.LEFT_CLIMB_MOTOR);
@@ -23,20 +26,28 @@ public class WinchClimber extends SubsystemBase {
     leftClimbMotor.enableVoltageCompensation(true);
     rightClimbMotor.setSafetyEnabled(true);
     leftClimbMotor.setSafetyEnabled(true);
+    rightMotorPower = 0.0;
+    leftMotorPower = 0.0;
    }
    public void raiseClimb(){
+     rightMotorPower = 0.5;
+     leftMotorPower = 0.5;
      double kRightClimbMotorVoltage = 12/rightClimbMotor.getBusVoltage();
      double kLeftClimbMotorVoltage = 12/leftClimbMotor.getBusVoltage();
-     rightClimbMotor.set(ControlMode.PercentOutput, 0.5*kRightClimbMotorVoltage);
-     leftClimbMotor.set(ControlMode.PercentOutput, 0.5*kLeftClimbMotorVoltage);
+     rightClimbMotor.set(ControlMode.PercentOutput, rightMotorPower*kRightClimbMotorVoltage);
+     leftClimbMotor.set(ControlMode.PercentOutput, leftMotorPower*kLeftClimbMotorVoltage);
    }
    public void lowerClimb(){
+    rightMotorPower = -0.5;
+    leftMotorPower = -0.5;
     double kRightClimbMotorVoltage = 12/rightClimbMotor.getBusVoltage();
     double kLeftClimbMotorVoltage = 12/leftClimbMotor.getBusVoltage();
-    rightClimbMotor.set(ControlMode.PercentOutput, -0.5*kRightClimbMotorVoltage);
-    leftClimbMotor.set(ControlMode.PercentOutput, -0.5*kLeftClimbMotorVoltage);
+    rightClimbMotor.set(ControlMode.PercentOutput, rightMotorPower*kRightClimbMotorVoltage);
+    leftClimbMotor.set(ControlMode.PercentOutput, leftMotorPower*kLeftClimbMotorVoltage);
    }
    public void stopClimb(){
+    rightMotorPower = 0.0;
+    leftMotorPower = 0.0;
     rightClimbMotor.set(0);
     leftClimbMotor.set(0);
    }
@@ -45,5 +56,9 @@ public class WinchClimber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    double kRightClimbMotorVoltage = 12/rightClimbMotor.getBusVoltage();
+    double kLeftClimbMotorVoltage = 12/leftClimbMotor.getBusVoltage();
+    rightClimbMotor.set(ControlMode.PercentOutput, rightMotorPower*kRightClimbMotorVoltage);
+    leftClimbMotor.set(ControlMode.PercentOutput, leftMotorPower*kLeftClimbMotorVoltage);
   }
 }
