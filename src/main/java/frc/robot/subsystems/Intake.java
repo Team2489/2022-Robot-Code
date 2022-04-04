@@ -16,6 +16,10 @@ public class Intake extends SubsystemBase {
   WPI_TalonSRX firstIntakeMotor;
   WPI_TalonSRX secondaryIntakeMotor;
   DigitalInput ballIn;
+
+  double firstCurrentPower;
+  double secondCurrentPower;
+
   public Intake() {
     firstIntakeMotor = new WPI_TalonSRX(Constants.FIRST_INTAKE_MOTOR);
     secondaryIntakeMotor = new WPI_TalonSRX(Constants.SECONDARY_INTAKE_MOTOR);
@@ -26,6 +30,9 @@ public class Intake extends SubsystemBase {
     firstIntakeMotor.setSafetyEnabled(true);
     secondaryIntakeMotor.setSafetyEnabled(true);
     ballIn = new DigitalInput(0);
+
+    firstCurrentPower = 0.0;
+    secondCurrentPower = 0.0;
    }
    public void intakeBalls(boolean grab, boolean release){
      double kFirstIntakeMotorVoltage = 12/firstIntakeMotor.getBusVoltage();
@@ -45,13 +52,17 @@ public class Intake extends SubsystemBase {
   }
 
     public void run(double power){
+      firstCurrentPower = power;
+      secondCurrentPower = power;
       double kFirstIntakeMotorVoltage = 12/firstIntakeMotor.getBusVoltage();
       double kSecondaryIntakeMotorVoltage = 12/secondaryIntakeMotor.getBusVoltage();
-      firstIntakeMotor.set(ControlMode.PercentOutput, power*kFirstIntakeMotorVoltage);
-      secondaryIntakeMotor.set(ControlMode.PercentOutput, power*kSecondaryIntakeMotorVoltage);
+      firstIntakeMotor.set(ControlMode.PercentOutput, firstCurrentPower*kFirstIntakeMotorVoltage);
+      secondaryIntakeMotor.set(ControlMode.PercentOutput, secondCurrentPower*kSecondaryIntakeMotorVoltage);
      
     }
     public void stop(){
+      firstCurrentPower = 0.0;
+      secondCurrentPower = 0.0;
       firstIntakeMotor.set(0);
       secondaryIntakeMotor.set(0);
     }
@@ -63,5 +74,9 @@ public class Intake extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    double kFirstIntakeMotorVoltage = 12/firstIntakeMotor.getBusVoltage();
+    double kSecondaryIntakeMotorVoltage = 12/secondaryIntakeMotor.getBusVoltage();
+    firstIntakeMotor.set(ControlMode.PercentOutput, firstCurrentPower*kFirstIntakeMotorVoltage);
+    secondaryIntakeMotor.set(ControlMode.PercentOutput, secondCurrentPower*kSecondaryIntakeMotorVoltage);
   }
 }
