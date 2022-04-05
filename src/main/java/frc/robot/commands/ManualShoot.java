@@ -3,10 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-
-import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.HoodedShooter;
@@ -61,22 +57,24 @@ public class ManualShoot extends CommandBase {
   }
   @Override
   public void end(boolean interrupted) {
+    shooterTimer.stop();
+    feederTimer.stop();
     hoodedShooter.stopShoot();
+    
   }
   @Override
   public boolean isFinished() {
     System.out.println("isFinished");
     if(feedStarted == false){
+      System.out.println("isFinished false");
       return false;
     }
     else{
       // System.out.println(feederTimer.get());
-      return feederTimer.hasElapsed(feedTime);
-      // if (ret) {
-        // shooterTimer.stop();
-        // feederTimer.stop();
-    //   }
-    //   return ret;
+      System.out.println("isFinished true");
+      boolean ret =  feederTimer.hasElapsed(feedTime);
+      return ret;
+    
     }
 
   }
