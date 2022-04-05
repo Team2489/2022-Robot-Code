@@ -72,8 +72,8 @@ public class ManualShoot extends CommandBase {
     else{
       // System.out.println(feederTimer.get());
       System.out.println("isFinished true");
-      boolean ret =  feederTimer.hasElapsed(feedTime);
-      return ret;
+     return feederTimer.hasElapsed(feedTime);
+      
     
     }
 
