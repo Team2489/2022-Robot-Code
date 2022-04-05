@@ -25,28 +25,25 @@ public class HoodedShooter extends SubsystemBase {
   double feederMotorPower;
 
   public HoodedShooter() {
-
-
     shooterMotor = new CANSparkMax(Constants.SHOOTER_MOTOR_PORT, MotorType.kBrushless);
-   
     feederMotor = new WPI_TalonSRX(Constants.INTAKE_FEEDER_MOTOR);
     timer = new Timer();
     shooterMotorPower = 0.0;
     feederMotorPower = 0.0;
-
     shooterMotor.enableVoltageCompensation(12);
     shooterEncoder = shooterMotor.getEncoder();
+    feederMotor.setInverted(true);
   }
   public void shoot(double power){
     shooterMotorPower = power;
     double shooterVoltage = shooterMotor.getBusVoltage();
-    shooterMotor.setInverted(true);
-    shooterMotor.set(-power*shooterVoltage);
+    // shooterMotor.setInverted(true);
+    shooterMotor.set(power*shooterVoltage);
   }
   public void feed(double power){
     feederMotorPower = power;
     double feedVoltage = feederMotor.getBusVoltage();
-    feederMotor.set(-power*feedVoltage);
+    feederMotor.set(power*feedVoltage);
   }
   public void stopShoot(){
     shooterMotorPower = 0.0;
