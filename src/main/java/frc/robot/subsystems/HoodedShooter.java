@@ -36,13 +36,13 @@ public class HoodedShooter extends SubsystemBase {
   }
   public void shoot(double power){
     shooterMotorPower = power;
-    double shooterVoltage = shooterMotor.getBusVoltage();
+    double shooterVoltage = 12/shooterMotor.getBusVoltage();
     // shooterMotor.setInverted(true);
     shooterMotor.set(power*shooterVoltage);
   }
   public void feed(double power){
     feederMotorPower = power;
-    double feedVoltage = feederMotor.getBusVoltage();
+    double feedVoltage = 12/feederMotor.getBusVoltage();
     feederMotor.set(power*feedVoltage);
   }
   public void stopShoot(){
@@ -56,9 +56,9 @@ public class HoodedShooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    double shooterVoltage = shooterMotor.getBusVoltage();
+    double shooterVoltage = 12/shooterMotor.getBusVoltage();
     shooterMotor.set(shooterMotorPower*shooterVoltage);
-    double feedVoltage = feederMotor.getBusVoltage();
+    double feedVoltage = 12/feederMotor.getBusVoltage();
     feederMotor.set(feederMotorPower*feedVoltage);
   }
 }

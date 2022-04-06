@@ -5,19 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.NEODrivetrain;
+import frc.robot.subsystems.HoodedShooter;
 
-public class Drive extends CommandBase {
-  /** Creates a new DriveStraightTime. */
-  private final double power;
-  private final double angle;
-  private final NEODrivetrain driveTrain;
-  public Drive(NEODrivetrain driveTrain, double power, double angle) {
+public class RunShooterFeeder extends CommandBase {
+  /** Creates a new RunShooterFeeder. */
+  HoodedShooter hoodedShooter;
+  double shooterPower;
+  double feederPower;
+  public RunShooterFeeder(HoodedShooter hoodedShooter, double shooterPower, double feederPower) {
     // Use addRequirements() here to declare subsystem dependencies.
-  addRequirements(driveTrain);
-  this.driveTrain = driveTrain;
-  this.power = power;
-  this.angle = angle;
+    this.hoodedShooter = hoodedShooter;
+    this.shooterPower = shooterPower;
+    this.feederPower =  feederPower;
+
+    addRequirements(hoodedShooter);
   }
 
   // Called when the command is initially scheduled.
@@ -27,13 +28,14 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.arcadeDrive(power, angle);
+    hoodedShooter.shoot(shooterPower);
+    hoodedShooter.feed(feederPower);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveTrain.stop();
+    hoodedShooter.stopShoot();
   }
 
   // Returns true when the command should end.

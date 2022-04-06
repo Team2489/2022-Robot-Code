@@ -1,7 +1,11 @@
 package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -14,6 +18,12 @@ public class NEODrivetrain extends SubsystemBase {
   CANSparkMax leftBackMax;
   RelativeEncoder rightEncoder;
   RelativeEncoder leftEncoder;
+  MotorControllerGroup rightMotors;
+  MotorControllerGroup leftMotors;
+  DifferentialDrive dDrive;
+  
+
+
 
   public NEODrivetrain() {
     rightFrontMax = new CANSparkMax(Constants.RIGHT_FRONT_MAX, MotorType.kBrushless);
@@ -21,25 +31,40 @@ public class NEODrivetrain extends SubsystemBase {
     leftFrontMax = new CANSparkMax(Constants.LEFT_FRONT_MAX, MotorType.kBrushless);
     leftBackMax = new CANSparkMax(Constants.LEFT_BACK_MAX, MotorType.kBrushless);
 
+    rightFrontMax.setIdleMode(IdleMode.kBrake);
+    rightBackMax.setIdleMode(IdleMode.kBrake);
+    leftFrontMax.setIdleMode(IdleMode.kBrake);
+    leftBackMax.setIdleMode(IdleMode.kBrake);
+
+    rightMotors = new MotorControllerGroup(rightFrontMax, rightBackMax);
+    leftMotors = new MotorControllerGroup(leftFrontMax, leftBackMax);
+    dDrive = new DifferentialDrive(leftMotors, rightMotors);
     rightFrontMax.enableVoltageCompensation(12);
     rightBackMax.enableVoltageCompensation(12);
     leftFrontMax.enableVoltageCompensation(12);
     leftBackMax.enableVoltageCompensation(12);
 
-
+    
     rightBackMax.follow(rightFrontMax);
     leftBackMax.follow(leftFrontMax);
   }
   public void arcadeDrive(double speed, double rotation){
- 
-    double kRVoltage = rightFrontMax.getBusVoltage();
-    double kLVoltage = leftFrontMax.getBusVoltage();
 
-    double right = speed + rotation;
-    double left = speed - rotation;
+    
+ 
+    double kRVoltage = 12/rightFrontMax.getBusVoltage();
+    double kLVoltage = 12/leftFrontMax.getBusVoltage();
   
-    rightFrontMax.set(right * kRVoltage);
-    leftFrontMax.set(left * kLVoltage);
+
+     dDrive.curvatureDrive(speed*0.6, -rotation*0.6, true);
+
+    
+  }
+  public void stop(){
+    rightBackMax.set(0);
+    rightFrontMax.set(0);
+    leftBackMax.set(0);
+    leftFrontMax.set(0);
   }
 
   public double getLeftVelocity() {

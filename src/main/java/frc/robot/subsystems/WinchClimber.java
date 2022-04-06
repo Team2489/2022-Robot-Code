@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -26,6 +27,8 @@ public class WinchClimber extends SubsystemBase {
     leftClimbMotor.enableVoltageCompensation(true);
     rightClimbMotor.setSafetyEnabled(true);
     leftClimbMotor.setSafetyEnabled(true);
+    rightClimbMotor.setNeutralMode(NeutralMode.Brake);
+    leftClimbMotor.setNeutralMode(NeutralMode.Brake);
     rightMotorPower = 0.0;
     leftMotorPower = 0.0;
    }
@@ -50,6 +53,9 @@ public class WinchClimber extends SubsystemBase {
     leftMotorPower = 0.0;
     rightClimbMotor.set(0);
     leftClimbMotor.set(0);
+   }
+   public void rightClimb(){
+     
    }
   
 

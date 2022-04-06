@@ -25,4 +25,5 @@ public final class Constants {
     public static final int SECONDARY_INTAKE_MOTOR = 41;
     public static final int RIGHT_CLIMB_MOTOR = 44;
     public static final int LEFT_CLIMB_MOTOR = 42;
-    public static final int INTAKE_FEEDER_MOTOR = 43;}
+    public static final int INTAKE_FEEDER_MOTOR = 43;
+    public static final int XBOX_CONTROLLER_PORT_2 = 2;}
