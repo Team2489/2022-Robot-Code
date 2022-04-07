@@ -38,7 +38,7 @@ public class HoodedShooter extends SubsystemBase {
     shooterMotorPower = power;
     double shooterVoltage = 12/shooterMotor.getBusVoltage();
     // shooterMotor.setInverted(true);
-    shooterMotor.set(power*shooterVoltage);
+    shooterMotor.set(-power*shooterVoltage);
   }
   public void feed(double power){
     feederMotorPower = power;

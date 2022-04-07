@@ -31,10 +31,10 @@ public class NEODrivetrain extends SubsystemBase {
     leftFrontMax = new CANSparkMax(Constants.LEFT_FRONT_MAX, MotorType.kBrushless);
     leftBackMax = new CANSparkMax(Constants.LEFT_BACK_MAX, MotorType.kBrushless);
 
-    rightFrontMax.setIdleMode(IdleMode.kBrake);
-    rightBackMax.setIdleMode(IdleMode.kBrake);
-    leftFrontMax.setIdleMode(IdleMode.kBrake);
-    leftBackMax.setIdleMode(IdleMode.kBrake);
+    rightFrontMax.setIdleMode(IdleMode.kCoast);
+    rightBackMax.setIdleMode(IdleMode.kCoast);
+    leftFrontMax.setIdleMode(IdleMode.kCoast);
+    leftBackMax.setIdleMode(IdleMode.kCoast);
 
     rightMotors = new MotorControllerGroup(rightFrontMax, rightBackMax);
     leftMotors = new MotorControllerGroup(leftFrontMax, leftBackMax);
@@ -52,11 +52,11 @@ public class NEODrivetrain extends SubsystemBase {
 
     
  
-    double kRVoltage = 12/rightFrontMax.getBusVoltage();
-    double kLVoltage = 12/leftFrontMax.getBusVoltage();
+    double kRVoltage = rightFrontMax.getBusVoltage();
+    double kLVoltage = leftFrontMax.getBusVoltage();
   
 
-     dDrive.curvatureDrive(speed*0.6, -rotation*0.6, true);
+     dDrive.curvatureDrive(speed*0.25, -rotation*0.3, true);
 
     
   }

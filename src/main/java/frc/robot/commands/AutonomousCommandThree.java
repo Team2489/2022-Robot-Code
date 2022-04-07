@@ -21,8 +21,8 @@ public class AutonomousCommandThree extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new Drive(driveTrain, drivePower, rotation).withTimeout(driveTime),
-      new ManualShootThree(hoodedShooter, intake, shooterPower, feederPower, intakePower, rampUpTime, feedTime)
+      new Drive(driveTrain, drivePower, rotation).withTimeout(driveTime)
+      // new ManualShootThree(hoodedShooter, intake, shooterPower, feederPower, intakePower, rampUpTime, feedTime)
       
     );
   }

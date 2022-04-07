@@ -18,6 +18,7 @@ import frc.robot.commands.Grab;
 import frc.robot.commands.GrabReleaseBalls;
 import frc.robot.commands.LowerClimb;
 import frc.robot.commands.ManualShoot;
+import frc.robot.commands.ManualShootThree;
 import frc.robot.commands.ManualShootTwo;
 import frc.robot.commands.RaiseClimb;
 import frc.robot.subsystems.HoodedShooter;
@@ -43,28 +44,28 @@ public class RobotContainer {
   private final HoodedShooter hoodedShooter = new HoodedShooter();
  
 
-  // private final AutonomousCommandTwo m_autoCommand = new AutonomousCommandTwo(driveTrain, 
-  //   hoodedShooter,
-  //   0.0,  // drivePower
-  //   0.75,  // shooterPower
-  //   1.0,  // feederPower
-  //   -0.4,  // rotation, 
-  //   2.5,  // driveTime, 
-  //   1.5,  // rampUpTime, 
-  //   3.0   // feedTime
-  //   );
-  private final AutonomousCommandThree m_autoCommand = new AutonomousCommandThree(driveTrain, 
-      hoodedShooter, 
-      intake, 
-      0.5, //intakePower 
-      0.0, //drivePower 
-      0.75, //shooterPower, 
-      -1.0, //feederPower, 
-      -0.4, //rotation, 
-      2.5, //driveTime, 
-      1.5, //rampUpTime, 
-      5.0  //feedTime
-  );
+  private final AutonomousCommandTwo m_autoCommand = new AutonomousCommandTwo(driveTrain, 
+    hoodedShooter,
+    0.0,  // drivePower
+    0.75,  // shooterPower
+    1.0,  // feederPower
+    -0.4,  // rotation, 
+    7,  // driveTime, 
+    1.5,  // rampUpTime, 
+    3.0   // feedTime
+    );
+  // private final AutonomousCommandThree m_autoCommand = new AutonomousCommandThree(driveTrain, 
+  //     hoodedShooter, 
+  //     intake, 
+  //     0.5, //intakePower 
+  //     0.0, //drivePower 
+  //     0.75, //shooterPower, 
+  //     -1.0, //feederPower, 
+  //     -0.4, //rotation, 
+  //     2.5, //driveTime, 
+  //     1.5, //rampUpTime, 
+  //     5.0  //feedTime
+  // );
   
 
   public RobotContainer() {
@@ -95,6 +96,7 @@ public class RobotContainer {
     // new JoystickButton(xboxController, Button.kRightBumper.value).whenPressed(new GrabReleaseBalls(intake, 0.3).withTimeout(3));
     // new JoystickButton(xboxController, Button.kB.value).whenPressed(new Grab(intake, 0.3));
     new JoystickButton(xboxControllerTwo, Button.kA.value).whenPressed(new ManualShootTwo(hoodedShooter, 0.75, 1, 1.5, 3));
+    new JoystickButton(xboxControllerTwo, Button.kB.value).whenPressed(new ManualShootThree(hoodedShooter, 0.3, 1, 1.5, 3));
   }
 
   /**
