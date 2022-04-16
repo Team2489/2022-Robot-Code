@@ -49,8 +49,8 @@ public class RobotContainer {
     0.0,  // drivePower
     0.75,  // shooterPower
     1.0,  // feederPower
-    -0.4,  // rotation, 
-    7,  // driveTime, 
+    -0.3,  // rotation, 
+    6.25,  // driveTime, 
     1.5,  // rampUpTime, 
     3.0   // feedTime
     );

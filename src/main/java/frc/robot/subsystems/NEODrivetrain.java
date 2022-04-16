@@ -4,6 +4,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,6 +22,7 @@ public class NEODrivetrain extends SubsystemBase {
   MotorControllerGroup rightMotors;
   MotorControllerGroup leftMotors;
   DifferentialDrive dDrive;
+  SlewRateLimiter filter;
   
 
 
@@ -47,6 +49,7 @@ public class NEODrivetrain extends SubsystemBase {
     
     rightBackMax.follow(rightFrontMax);
     leftBackMax.follow(leftFrontMax);
+    filter = new SlewRateLimiter(0.75);
   }
   public void arcadeDrive(double speed, double rotation){
 
@@ -56,8 +59,9 @@ public class NEODrivetrain extends SubsystemBase {
     double kLVoltage = leftFrontMax.getBusVoltage();
   
 
-     dDrive.curvatureDrive(speed*0.25, -rotation*0.3, true);
-
+      dDrive.curvatureDrive(speed*0.25, -rotation*0.4, true);
+    // dDrive.curvatureDrive(filter.calculate(speed), filter.calculate(rotation), false);
+      // dDrive.arcadeDrive(filter.calculate(speed), filter.calculate(rotation));
     
   }
   public void stop(){
